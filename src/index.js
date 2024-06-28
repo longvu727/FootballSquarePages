@@ -2,13 +2,13 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-import App from "./App";
+import Board from "./Board";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <div className="container">
-      <App />
+      <Board />
     </div>
   </StrictMode>
 );

@@ -1,35 +1,7 @@
 import { useEffect, useState } from "react";
-
-function Square({square, onSquareClick}) {
-  return <button className="square" onClick={onSquareClick}>
-    {"" + square.row_index + square.column_index}
-    </button>;
-}
-
-function SquareRow({row}) {
-  function handleClick(i){
-    console.log("Clicked " + i);
-  }
-
-  let squares = []
-  const keys = Object.keys(row).sort(sortByNumber);
-
-  for (let columnI of keys) {
-    let square = row[columnI];
-    let key = square.row_index + "_" + square.column_index
-    squares.push(
-        <Square 
-          key={key}
-          square={square}
-          onSquareClick={() => handleClick(key)}
-        />
-    );
-  }
-
-  return <div key={keys.join("_")} className="board-row">
-    {squares}  
-  </div>
-}
+import { SquareRow } from "./components/SquareRow";
+import { Square } from "./components/Square";
+import { sortByNumber } from "./util/sortByNumber";
 
 export default  function Board() {
   const data = JSON.parse(`{
@@ -945,21 +917,7 @@ export default  function Board() {
     "error_message": ""
 }`);
 
-  let squares = data.football_squares;
-
-  console.log(squares);
-  const squaresRowsColumns = {};
-
-  for (let i=0; i < squares.length ; i++) {
-    let square = squares[i];
-    if( typeof squaresRowsColumns[square.row_index] === 'undefined' ){
-      squaresRowsColumns[square.row_index] = {};
-    }
-    squaresRowsColumns[square.row_index][square.column_index] = square;
-  }
-  
-  console.log(squaresRowsColumns)
-
+  const squaresRowsColumns = toSquareRowsColumns(data.football_squares);
   const rows = [];
 
   for (let rowI of Object.keys(squaresRowsColumns).sort(sortByNumber)) {
@@ -973,8 +931,17 @@ export default  function Board() {
   </>);
 }
 
-function sortByNumber(a, b) {
-  return a - b;
+function toSquareRowsColumns(squares) {
+    const squaresRowsColumns = {};
+
+    for (let i = 0; i < squares.length; i++) {
+        let square = squares[i];
+        if (typeof squaresRowsColumns[square.row_index] === 'undefined') {
+            squaresRowsColumns[square.row_index] = {};
+        }
+        squaresRowsColumns[square.row_index][square.column_index] = square;
+    }
+    return squaresRowsColumns;
 }
 
 function BoardBK() {
