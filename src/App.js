@@ -11,11 +11,13 @@ function SquareRow({row}) {
     console.log("Clicked " + i);
   }
 
-  let cells = []
-  for (let columnI of Object.keys(row).sort(sortByNumber)) {
+  let squares = []
+  const keys = Object.keys(row).sort(sortByNumber);
+
+  for (let columnI of keys) {
     let square = row[columnI];
     let key = square.row_index + "_" + square.column_index
-    cells.push(
+    squares.push(
         <Square 
           key={key}
           square={square}
@@ -24,8 +26,8 @@ function SquareRow({row}) {
     );
   }
 
-  return <div className="board-row">
-    {cells}  
+  return <div key={keys.join("_")} className="board-row">
+    {squares}  
   </div>
 }
 
@@ -961,7 +963,7 @@ export default  function Board() {
   const rows = [];
 
   for (let rowI of Object.keys(squaresRowsColumns).sort(sortByNumber)) {
-    rows.push(<SquareRow row={squaresRowsColumns[rowI]} />)
+    rows.push(<SquareRow key={rowI} row={squaresRowsColumns[rowI]} />)
   }
 
   return (<>
