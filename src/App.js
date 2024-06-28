@@ -1,35 +1,1019 @@
 import { useEffect, useState } from "react";
 
-function Square({value, onSquareClick}) {
-  return <button className="square" onClick={onSquareClick}>{value}</button>;
+function Square({square, onSquareClick}) {
+  return <button className="square" onClick={onSquareClick}>
+    {"" + square.row_index + square.column_index}
+    </button>;
 }
 
-export default function Board() {
+function SquareRow({row}) {
+  function handleClick(i){
+    console.log("Clicked " + i);
+  }
+
+  let cells = []
+  for (let columnI of Object.keys(row).sort(sortByNumber)) {
+    let square = row[columnI];
+    let key = square.row_index + "_" + square.column_index
+    cells.push(
+        <Square 
+          key={key}
+          square={square}
+          onSquareClick={() => handleClick(key)}
+        />
+    );
+  }
+
+  return <div className="board-row">
+    {cells}  
+  </div>
+}
+
+export default  function Board() {
+  const data = JSON.parse(`{
+    "game_guid": "e48958c4-4835-4b2c-aa73-12fe2f3a3c0e",
+    "sport": "football",
+    "team_a": "Team Red",
+    "team_b": "Team Blue",
+    "square_size": 10,
+    "row_points": "",
+    "column_points": "",
+    "football_squares": [
+        {
+            "column_index": 1,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 1,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 2,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 3,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 4,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 5,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 6,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 7,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 8,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 9,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 1,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 2,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 3,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 4,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 5,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 6,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 7,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 8,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 9,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        },
+        {
+            "column_index": 10,
+            "row_index": 10,
+            "winner_quater_number": 0,
+            "winner": false,
+            "user_guid": "",
+            "user_alias": "",
+            "user_name": ""
+        }
+    ],
+    "error_message": ""
+}`);
+
+  let squares = data.football_squares;
+
+  console.log(squares);
+  const squaresRowsColumns = {};
+
+  for (let i=0; i < squares.length ; i++) {
+    let square = squares[i];
+    if( typeof squaresRowsColumns[square.row_index] === 'undefined' ){
+      squaresRowsColumns[square.row_index] = {};
+    }
+    squaresRowsColumns[square.row_index][square.column_index] = square;
+  }
+  
+  console.log(squaresRowsColumns)
+
+  const rows = [];
+
+  for (let rowI of Object.keys(squaresRowsColumns).sort(sortByNumber)) {
+    rows.push(<SquareRow row={squaresRowsColumns[rowI]} />)
+  }
+
+  return (<>
+    <div className="teamA"> {data.team_a} </div>
+    <div className="squares"> {rows} </div>
+    <div className="teamB"> {data.team_b} </div>
+    
+  </>);
+}
+
+function sortByNumber(a, b) {
+  return a - b;
+}
+
+function BoardBK() {
   const [squares, setSquares] =  useState([]);
 
   useEffect( ()=> {
-    fetch("http://localhost:3101/GetGame/d3ada7f0-d02b-499e-b906-136fc0044087")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setSquares(data);
-      })
-      .catch((err) => {
-        console.log(err.message)
-      });
+    const dataFetch = async () => {
+      const data = await (
+        await fetch( 'http://localhost:3101/GetGame/d3ada7f0-d02b-499e-b906-136fc0044087' )
+      ).json();
+
+      // set state when the data received
+      setSquares(data.football_squares);
+    };
+
+    dataFetch();
   }, []);
 
   function handleClick(i){
-    console.log("Clicked " + i)
+    console.log("Clicked " + i);
+  }
+
+  console.log(squares);
+  
+  const rows = [];
+
+  for (let i=0; i < squares.length ; i++) {
+    let square = squares[i]
+    rows.push(
+        <Square 
+          key={square.row_index + "_" + square.column_index}
+          square={square}
+          onSquareClick={() => handleClick(2)}
+        />
+    );
   }
 
   return (
     <>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)}/>
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)}/>
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)}/>
-      </div>
+      {rows}
     </>
-  )
+  );
 }

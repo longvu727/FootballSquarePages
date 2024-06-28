@@ -63,12 +63,12 @@ body {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 60px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 60px;
 }
 
 .board-row:after {
@@ -87,4 +87,37 @@ body {
 
 .game-info {
   margin-left: 20px;
+}
+
+.container {
+  max-width: fit-content;
+  min-width: 900px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 33px 100px;
+  background-color: gainsboro;
+}
+
+.squares {
+  margin-left: 50px;
+  margin-right: 15px;
+  min-width: 600px;
+}
+
+.teamA {
+  width: 100%;
+    text-align: center;
+    height: 40px;
+}
+
+.teamB {
+  writing-mode: tb-rl;
 }
