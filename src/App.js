@@ -968,7 +968,6 @@ export default  function Board() {
     <div className="teamA"> {data.team_a} </div>
     <div className="squares"> {rows} </div>
     <div className="teamB"> {data.team_b} </div>
-    
   </>);
 }
 
