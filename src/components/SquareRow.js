@@ -1,4 +1,4 @@
-import { sortByNumber } from "../util/sortByNumber";
+import { sortByNumber } from "../util/Sorts";
 import { Square } from "./Square";
 
 export function SquareRow({ row }) {

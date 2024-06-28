@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SquareRow } from "./components/SquareRow";
 import { Square } from "./components/Square";
-import { sortByNumber } from "./util/sortByNumber";
+import { sortByNumber } from "./util/Sorts";
 
 export default  function Board() {
   const data = JSON.parse(`{
