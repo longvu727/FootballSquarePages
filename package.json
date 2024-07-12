@@ -9,8 +9,10 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "npm-check": "^6.0.1",
     "react": "^18.0.0",
+    "react-bootstrap": "^2.10.4",
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.1",
     "svgo": "^3.3.2",
@@ -30,6 +32,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "react-router-dom": "^6.24.1"
   }
 }

@@ -89,7 +89,7 @@ body {
   margin-left: 20px;
 }
 
-.container {
+.boardContainer {
   max-width: fit-content;
   min-width: 900px;
   margin: 0 auto;
