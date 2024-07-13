@@ -11,9 +11,9 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "npm-check": "^6.0.1",
-    "react": "^18.0.0",
+    "react": "^19.0.0-rc-df5f2736-20240712",
     "react-bootstrap": "^2.10.4",
-    "react-dom": "^18.0.0",
+    "react-dom": "^19.0.0-rc-df5f2736-20240712",
     "react-scripts": "^5.0.1",
     "svgo": "^3.3.2",
     "workbox-cacheable-response": "^7.1.0",

@@ -4,29 +4,21 @@ import { Square } from "../components/Square";
 import { sortByNumber } from "../util/Sorts";
 import "../css/board.css"
 
-export default  function Board() {
-  const [data, setData] = useState(null)
-  useEffect( ()=> {
-    const dataFetch = async () => {
-      const data = await (
-        await fetch( 'http://localhost:3101/GetGame/b5502c1f-86d6-4dcf-92ea-1ad974f882aa' )
-      ).json();
-
-      // set state when the data received
-      setData(data);
-    };
-
-    dataFetch();
-  }, []);
-
+export default  function Board({data}) {
   
-  const rows = [];
-  if(data){
-    const squaresRowsColumns = toSquareRowsColumns(data.football_squares);
+  /*
 
-    for (let rowI of Object.keys(squaresRowsColumns).sort(sortByNumber)) {
-        rows.push(<SquareRow key={rowI} row={squaresRowsColumns[rowI]} />)
-    }
+  */
+
+  if(!data){
+    return
+  }
+
+  const rows = [];
+  const squaresRowsColumns = toSquareRowsColumns(data.football_squares);
+
+  for (let rowI of Object.keys(squaresRowsColumns).sort(sortByNumber)) {
+    rows.push(<SquareRow key={rowI} row={squaresRowsColumns[rowI]} />)
   }
   
   return (<>

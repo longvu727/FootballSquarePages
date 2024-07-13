@@ -6,8 +6,6 @@ function App() {
   return (
     <Routes>
         <Route path="/" element={<Home/>}></Route>
-        <Route path="/board/:game_guid/:user_guid" element={<Board/>}></Route>
-        <Route path="/board" element={<Board/>}></Route>
     </Routes>
   );
 }
