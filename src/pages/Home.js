@@ -6,7 +6,7 @@ import '../css/home.css'
 import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Board from './Board';
 
 
@@ -14,9 +14,7 @@ export default function Home() {
   function startBoard(formData) {
     
     if (formData.get("game_guid")) {
-      fetch('http://localhost:3101/GetGame/' + formData.get("game_guid")).
-        then((response)=>response.json()).
-        then((json)=> setBoardData(json));
+      setGameData(formData.get("game_guid"));
     }
 
     if (formData.get("user_guid")) {
@@ -25,8 +23,8 @@ export default function Home() {
 
   }
 
-  const [boardData, setBoardData] = useState(null);
   const [userData, setUserData] = useState(null);
+  const [gameData, setGameData] = useState(null);
 
   return <>
   <Container>
@@ -41,7 +39,9 @@ export default function Home() {
         </Form>
       </Col>
     </Row>
-    <Row> <Board data={boardData} user={userData}/> </Row>
+    <Row> 
+      { userData && gameData && <Board game={gameData} user={userData}/> }
+    </Row>
   </Container>
   </>;
 }

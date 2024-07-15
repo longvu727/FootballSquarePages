@@ -1,8 +1,8 @@
 import { sortByNumber } from "../util/Sorts";
 import { Square } from "./Square";
 
-export function SquareRow({row, game, user}) {
-    function reserveSquare(game, user, row_index, column_index) {
+export function SquareRow({row, game, user, setSquareReserve}) {
+    function reserveSquare(key, game, user, row_index, column_index) {
       const reserveBodyJson = JSON.stringify({
         game_guid: game,
         user_guid: user,
@@ -12,13 +12,16 @@ export function SquareRow({row, game, user}) {
       
       console.log("Clicked " + reserveBodyJson);
       
-      fetch('http://localhost:3101/ReserveSquares', {method: 'POST', body: reserveBodyJson}).
-        then((response)=>response.json()).
-        then((json)=>{
+      fetch('http://localhost:3101/ReserveSquares', {method: 'POST', body: reserveBodyJson})
+        .then((response)=>response.json())
+        .then((json)=>{
           if (json.reserved) {
             console.log("Reserved");
+            setSquareReserve(key)
           }
         });
+
+      
     }
 
     let squares = [];
@@ -29,7 +32,7 @@ export function SquareRow({row, game, user}) {
         let key = square.row_index + "_" + square.column_index;
         squares.push(
           <Square key={key} square={square}
-              onSquareClick={() => reserveSquare(game, user, square.row_index, square.column_index)} />
+              onSquareClick={() => reserveSquare(key, game, user, square.row_index, square.column_index)} />
         );
     }
 
