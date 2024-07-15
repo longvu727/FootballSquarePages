@@ -4,30 +4,27 @@ import { Square } from "../components/Square";
 import { sortByNumber } from "../util/Sorts";
 import "../css/board.css"
 
-export default  function Board({data}) {
-  
-  /*
-
-  */
+export default  function Board({data, user}) {
 
   if(!data){
-    return
+    return;
   }
 
   const rows = [];
   const squaresRowsColumns = toSquareRowsColumns(data.football_squares);
+  const gameGUID = data.game_guid;
 
   for (let rowI of Object.keys(squaresRowsColumns).sort(sortByNumber)) {
-    rows.push(<SquareRow key={rowI} row={squaresRowsColumns[rowI]} />)
+    rows.push(<SquareRow key={rowI} row={squaresRowsColumns[rowI]} game={gameGUID} user={user} />);
   }
   
-  return (<>
+  return <>
     <div className="boardContainer">
       <div className="teamA"> {data && data.team_a} </div>
       <div className="squares"> {rows.length > 0 && rows} </div>
       <div className="teamB"> {data && data.team_b} </div>
     </div>
-  </>);
+  </>;
   
 }
 
