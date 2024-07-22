@@ -1,25 +1,33 @@
 import { useEffect, useState } from "react";
+
 import { SquareRow } from "../components/SquareRow";
 import { sortByNumber } from "../util/Sorts";
 import "../css/board.css"
 
-const getGameURL = 'http://localhost:3101/GetGame/';
+const gameHost = 'localhost:3101';
+const getGameAPI = '/GetGame/';
+const subscribeGetGameAPI = '/Subscribe/GetGame/';
+
 export default  function Board({game, user}) {
   const [boardData, setBoardData] = useState(null)
-  const [squareReserve, setSquareReserve] = useState(null)
 
-  const fetchBoardData = async() => {
-    fetch(getGameURL + game).
-        then((response)=>response.json()).
-        then((json)=> setBoardData(json));
-  };
+  useEffect(()=>{ 
+    // Create WebSocket connection.
+    const socket = new WebSocket("ws://" + gameHost + subscribeGetGameAPI + game);
 
-  useEffect(()=>{ fetchBoardData(); }, [game])
+    // Connection opened
+    socket.addEventListener("open", (event) => {
+      console.log("Opened");
+    });
 
-  useEffect(()=>{
-    console.log(squareReserve)
-    fetchBoardData();
-  }, [squareReserve])
+    // Listen for messages
+    socket.addEventListener("message", (event) => {
+      const response = JSON.parse(event.data);
+
+      setBoardData(response)
+    });
+
+  }, [])
 
   if(!boardData) {
     return;
@@ -30,7 +38,7 @@ export default  function Board({game, user}) {
   const gameGUID = boardData.game_guid;
 
   for (let rowI of Object.keys(squaresRowsColumns).sort(sortByNumber)) {
-    rows.push(<SquareRow key={rowI} row={squaresRowsColumns[rowI]} game={gameGUID} user={user} setSquareReserve={setSquareReserve} />);
+    rows.push(<SquareRow key={rowI} row={squaresRowsColumns[rowI]} game={gameGUID} user={user} />);
   }
   
   return <>

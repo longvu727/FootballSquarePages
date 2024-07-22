@@ -13,15 +13,7 @@ export function SquareRow({row, game, user, setSquareReserve}) {
       console.log("Clicked " + reserveBodyJson);
       
       fetch('http://localhost:3101/ReserveSquares', {method: 'POST', body: reserveBodyJson})
-        .then((response)=>response.json())
-        .then((json)=>{
-          if (json.reserved) {
-            console.log("Reserved");
-            setSquareReserve(key)
-          }
-        });
-
-      
+        .then((response)=>response.json());
     }
 
     let squares = [];

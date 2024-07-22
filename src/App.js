@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import Board from './pages/Board';
 import Home from './pages/Home';
 
 function App() {

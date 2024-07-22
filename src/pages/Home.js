@@ -6,7 +6,7 @@ import '../css/home.css'
 import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Board from './Board';
 
 
