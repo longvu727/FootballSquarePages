@@ -5,7 +5,6 @@ import { sortByNumber } from "../util/Sorts";
 import "../css/board.css"
 
 const gameHost = 'localhost:3101';
-const getGameAPI = '/GetGame/';
 const subscribeGetGameAPI = '/Subscribe/GetGame/';
 
 export default  function Board({game, user}) {
