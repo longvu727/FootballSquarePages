@@ -40,7 +40,10 @@ export default function Home() {
       </Col>
     </Row>
     <Row> 
-      { userData && gameData && <Board game={gameData} user={userData}/> }
+      {userData && userData}, {gameData && gameData}
+    </Row>
+    <Row> 
+      { userData && gameData && <Board key={userData + gameData} game={gameData} user={userData}/> }
     </Row>
   </Container>
   </>;
